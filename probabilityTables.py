@@ -13,10 +13,11 @@ def create_empty_table():
         for j in range(cols+2):# +2 accounting for title and total cols
             # if title row:
             if i == 0 or j == 0:
-                temp.append("x")
-            # if total row:
-            elif i == rows+2 or j == cols + 2:
-                temp.append("t")
+                # check if total row or not:
+                if i == rows+1 or j == cols+1:
+                    temp.append("t")
+                else:
+                    temp.append("x")
             # otherwise:
             else:
                 temp.append(0)
