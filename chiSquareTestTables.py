@@ -3,12 +3,12 @@ from scipy.stats import chi2
 from copy import deepcopy
 from pprint import pprint
 
-#table = make_table()
+table = make_table()
 
-table = [['test', '<5 yrs', '5-10 yrs', '>10 yrs', 'totals'],
-        ['widow', 25, 42, 33, 100],
-        ['widowed', 78, 80, 42, 200],
-        ['totals', 103, 122, 75, 300]]
+# table = [['test', '<5 yrs', '5-10 yrs', '>10 yrs', 'totals'],
+#         ['widow', 25, 42, 33, 100],
+#         ['widowed', 78, 80, 42, 200],
+#         ['totals', 103, 122, 75, 300]]
 
 # perform chi square test on inputted table
 # steps:
