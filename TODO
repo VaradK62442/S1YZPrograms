@@ -1,0 +1,58 @@
+1. basic calculation
+     find mean
+     find sum
+     find variance
+     find quartiles
+     find upper and lower fence
+     find outliers
+2. random variables
+     given x and P(X=x), find E(X)
+     find Var(X)
+3. distributions
+     normal
+          find Z score given x-bar, mu, sigma
+          find p-value
+     bernoulli
+          find mu and sigma given p
+     geometric
+          find mu and sigma given p
+     binomial 
+          find P(X=x) given p and n
+          find mu and sigma given p and n
+     negative binomial 
+          find P(kth success on nth trial) given p and n
+     poisson  
+          find P(X=x) given lambda
+4. confidence intervals
+     single proportion
+          calculate X% confidence interval given
+               p, n, p-hat, significance level
+     two proportions
+          calculate X% confidence interval given
+               p1, p2, n1, n2, p1-hat, p2-hat, significance level
+     margin of error
+          given max moe, p, n, significance level
+               find specified parameter such that 
+               moe is at most the value inputted
+5. hypothesis testing
+     single proportion
+          given significance level, p-hat, n, p, (one or two)-sided test
+               check success-failure condition
+               calculate Z-score
+               calculate p-value
+     two proportions
+          given significance level, p-hat, n, p, (one or two)-sided test
+               find pooled proportion
+               check success-failure condition
+               calculate Z-score
+               calculate p-value
+6. chi-square tests
+     goodness of fit
+          given observed and expected values
+               calculate chi square test stat
+               calculate p-value
+     two-way tables #
+          given table of observed values
+               calculate expected values
+               calculate chi square test stat
+               calculate p-value
