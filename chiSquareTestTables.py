@@ -69,4 +69,5 @@ def main():
     print(f"Chi square t stat: {chisq}\nDegrees of freedom: {df}\np-value: {p_val}")
 
 
-main()
+if __name__ == "__main__":
+    main()
