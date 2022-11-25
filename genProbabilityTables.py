@@ -1,6 +1,4 @@
-# form a table with n rows and m cols
-# calculate given probability
-# incl using bayes theorem
+# create table from given inputs
 
 def create_empty_table():
     rows = int(input("Enter number of rows: "))
@@ -79,6 +77,3 @@ def main():
     displayTable(table)
 
     return table
-
-
-table = main()
