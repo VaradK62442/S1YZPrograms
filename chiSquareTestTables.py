@@ -1,4 +1,4 @@
-from genProbabilityTables import main as make_table, displayTable
+from genTables import main as make_table, displayTable
 from scipy.stats import chi2
 from copy import deepcopy
 
