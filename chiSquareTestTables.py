@@ -1,7 +1,6 @@
 from genProbabilityTables import main as make_table, displayTable
 from scipy.stats import chi2
 from copy import deepcopy
-from pprint import pprint
 
 table = make_table()
 
@@ -43,7 +42,7 @@ def find_chisq(o_table, e_table):
             expected_val = e_table[row][col]
             chisq += ((observed_val - expected_val) ** 2) / expected_val
 
-    return chisq
+    return round(chisq, 4)
 
 
 def find_df(table):
@@ -51,7 +50,7 @@ def find_df(table):
 
 
 def find_p_val(chisq, df):
-    return 1 - chi2.cdf(chisq, df)
+    return round(1 - chi2.cdf(chisq, df), 4)
 
 
 def main():

@@ -74,6 +74,5 @@ def main():
     table = set_titles(table)
     table = populate_table(table)
     table = calculate_totals(table)
-    displayTable(table)
 
     return table
