@@ -12,6 +12,13 @@ def get_list():
     return [int(input(f"Enter element {i+1}: ")) for i in range(n)]
 
 
+def find_quartiles(l):
+    quartiles = []
+    
+
+    return quartiles
+
+
 def main():
     l = get_list()
     total = sum(l)
