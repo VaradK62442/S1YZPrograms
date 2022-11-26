@@ -5,7 +5,7 @@
      find quartiles
      find upper and lower fence
      find outliers
-2. random variables
+2. random variables #
      given x and P(X=x), find E(X)
      find Var(X)
 3. distributions
