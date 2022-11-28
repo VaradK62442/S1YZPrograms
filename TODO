@@ -47,7 +47,7 @@
                calculate Z-score
                calculate p-value
 6. chi-square tests
-     goodness of fit
+     goodness of fit #
           given observed and expected values
                calculate chi square test stat
                calculate p-value
