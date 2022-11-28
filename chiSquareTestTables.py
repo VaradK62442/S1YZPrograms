@@ -55,17 +55,24 @@ def find_p_val(chisq, df):
 
 def main():
     # functions
+    sig_level = float(input("Enter significance level: "))
     expected_table = create_expected_value_table(table)
     chisq = find_chisq(table, expected_table)
     df = find_df(table)
     p_val = find_p_val(chisq, df)
 
     # output
+    print("\nObserved table: ")
     displayTable(table)
-    print()
+    print("\nExpected table: ")
     displayTable(expected_table)
-    print()
-    print(f"Chi square t stat: {chisq}\nDegrees of freedom: {df}\np-value: {p_val}")
+    print(f"\nChi square t stat: {chisq}\nDegrees of freedom: {df}\np-value: {p_val}")
+
+    # decision
+    if p_val < sig_level:
+        print(f"Since {p_val} < {sig_level}, reject null hypothesis.")
+    else:
+        print(f"Since {p_val} >= {sig_level}, fail to reject null hypothesis.")
 
 
 if __name__ == "__main__":
