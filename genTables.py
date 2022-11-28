@@ -40,7 +40,7 @@ def populate_table(table):
     # loop through values, excluding title and total cols and rows
     for i in range(1, len(table)-1):
         for j in range(1, len(table[i])-1):
-            table[i][j] = int(input(f"Enter value for value ({table[i][0]},{table[0][j]}): "))
+            table[i][j] = float(input(f"Enter value for value ({table[i][0]},{table[0][j]}): "))
 
     return table
 
