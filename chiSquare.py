@@ -16,6 +16,7 @@ from pprint import pprint
 def get_observed():
     length = input("Enter number of values: ")
     o = []
+    print("Observed values")
     for i in range(int(length)):
         val = float(input(f"Enter value number {i+1}: "))
         o.append(val)
@@ -25,6 +26,7 @@ def get_observed():
 
 def get_expected(length):
     e = []
+    print("Expected values")
     for i in range(int(length)):
         val = float(input(f"Enter value number {i+1}: "))
         e.append(val)
