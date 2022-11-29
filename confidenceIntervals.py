@@ -5,10 +5,6 @@
 # two proportions
 #     calculate X% confidence interval given
 #         p1, p2, n1, n2, p1-hat, p2-hat, significance level
-# margin of error
-#     given max moe, p, n, significance level
-#         find specified parameter such that
-#         moe is at most the value inputted
 
 from scipy import stats # to find z_val
 from math import sqrt
