@@ -23,17 +23,13 @@
           find P(kth success on nth trial) given p and n
      poisson  
           find P(X=x) given lambda
-4. confidence intervals
-     single proportion
+4. confidence intervals #
+     single proportion #
           calculate X% confidence interval given
                p, n, p-hat, significance level
-     two proportions
+     two proportions #
           calculate X% confidence interval given
                p1, p2, n1, n2, p1-hat, p2-hat, significance level
-     margin of error
-          given max moe, p, n, significance level
-               find specified parameter such that 
-               moe is at most the value inputted
 5. hypothesis testing
      single proportion
           given significance level, p-hat, n, p, (one or two)-sided test
