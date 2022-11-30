@@ -64,6 +64,13 @@ def main():
     pprint(observed)
     print("\nExpected table: ")
     pprint(expected)
+
+    print("\nIndependence is assumed.")
+    if sum([1 if elt > 5 else 0 for elt in expected]) == len(expected):
+        print("Success failure condition satisfied.")
+    else:
+        print("Success failure condition not satisfied.")
+
     print(f"\nChi square t stat: {chisq}\nDegrees of freedom: {df}\np-value: {p_val}")
 
     # decision
