@@ -1,8 +1,8 @@
 # create table from given inputs
 
 def create_empty_table():
-    rows = int(input("Enter number of rows: "))
     cols = int(input("Enter number of cols: "))
+    rows = int(input("Enter number of rows: "))
     # include row and col for titles
     # also include total col and row
     table = []
