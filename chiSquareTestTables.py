@@ -71,8 +71,10 @@ def main():
     # decision
     if p_val < sig_level:
         print(f"Since {p_val} < {sig_level}, reject null hypothesis.")
+        print("Data is likely not independent.")
     else:
         print(f"Since {p_val} >= {sig_level}, fail to reject null hypothesis.")
+        print("Evidence to suggest data is independent.")
 
 
 if __name__ == "__main__":
