@@ -53,6 +53,15 @@ def find_p_val(chisq, df):
     return round(1 - chi2.cdf(chisq, df), 4)
 
 
+def check_sf(exp):
+    sf_satisfied = True
+    for row in range(1, len(exp)-1):
+        for col in range(1, len(exp[row])-1):
+            if exp[row][col] < 5:
+                sf_satisfied = False
+
+    return sf_satisfied
+
 def main():
     # functions
     sig_level = float(input("Enter significance level: "))
@@ -67,6 +76,12 @@ def main():
     print("\nExpected table: ")
     displayTable(expected_table)
     print(f"\nChi square t stat: {chisq}\nDegrees of freedom: {df}\np-value: {p_val}")
+
+    print("Independence is assumed.")
+    if check_sf(expected_table):
+        print("Success-failure condition satisfied.")
+    else:
+        print("Success-failure condition not satisfied.")
 
     # decision
     if p_val < sig_level:
