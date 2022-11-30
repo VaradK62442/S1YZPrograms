@@ -69,8 +69,10 @@ def main():
     # decision
     if p_val < sig_level:
         print(f"Since {p_val} < {sig_level}, reject null hypothesis.")
+        print("Data does not follow expected distribution.")
     else:
         print(f"Since {p_val} >= {sig_level}, fail to reject null hypothesis.")
+        print("Evidence to suggest data follows expected distribution.")
 
 
 if __name__ == "__main__":
