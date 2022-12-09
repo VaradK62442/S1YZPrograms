@@ -27,23 +27,23 @@ def single_proportion():
     else:
         print("Success-failure condition not satisfied.")
 
-    se = round(sqrt(p * (1-p) / n), 4)
-    z_score = round((p_hat - p) / se, 4)
+    se = sqrt(p * (1-p) / n)
+    z_score = (p_hat - p) / se
     if z_score < 0:
-        p_val = round(norm.cdf(z_score), 4)
+        p_val = norm.cdf(z_score)
     else:
-        p_val = round(norm.cdf(-z_score), 4)
+        p_val = norm.cdf(-z_score)
 
     if sided == '2':
-        rejection_region = round(norm.ppf(sig_level/2), 4)
+        rejection_region = norm.ppf(sig_level/2)
         p_val *= 2
     else:
-        rejection_region = round(norm.ppf(sig_level), 4)
+        rejection_region = norm.ppf(sig_level)
 
-    print(f"Standard error: {se}")
-    print(f"Z score: {z_score}")
-    print(f"p value: {p_val}")
-    print(f"Rejection region: {rejection_region}")
+    print(f"Standard error: {round(se, 4)}")
+    print(f"Z score: {round(z_score, 4)}")
+    print(f"p value: {round(p_val, 4)}")
+    print(f"Rejection region: {round(rejection_region, 4)}")
 
     # decision
     if z_score < rejection_region or z_score > -1 * rejection_region:
@@ -53,7 +53,48 @@ def single_proportion():
 
 
 def two_proportion():
-    pass
+    sig_level = float(input("Enter significance level: "))
+    p1 = float(input("Enter sample proportion for sample 1: "))
+    n1 = int(input("Enter sample size for sample 1: "))
+    p2 = float(input("Enter sample proportion for sample 2: "))
+    n2 = int(input("Enter sample size for sample 2: "))
+    p_null = float(input("Enter hypothesis proportion: "))
+    sided = input("Enter if the test is [1]-sided or [2]-sided: ")
+
+    # find p pooled for sf condition
+    ppool = (p1 * n1 + p2 * n2) / (n1 + n2)
+    n_total = n1 + n2
+
+    # check success failure condition
+    if ppool * n_total >= 10 and (1-ppool) * n_total >= 10:
+        print("Success-failure condition satisfied.")
+    else:
+        print("Success-failure condition not satisfied.")
+
+    se = sqrt((p1 * (1-p1) / n1) + (p2 * (1-p2) / n2))
+    z_score = ((p1 - p2) - p_null) / se
+    if z_score < 0:
+        p_val = norm.cdf(z_score)
+    else:
+        p_val = norm.cdf(-z_score)
+
+    if sided == '2':
+        rejection_region = norm.ppf(sig_level/2)
+        p_val *= 2
+    else:
+        rejection_region = norm.ppf(sig_level)
+
+    print(f"Pooled proportion: {round(ppool, 4)}")
+    print(f"Standard error: {round(se, 4)}")
+    print(f"Z score: {round(z_score, 4)}")
+    print(f"p value: {round(p_val, 4)}")
+    print(f"Rejection region: {round(rejection_region, 4)}")
+
+    # decision
+    if z_score < rejection_region or z_score > -1 * rejection_region:
+        print(f"Reject null hypothesis.")
+    else:
+        print(f"Fail to reject null hypothesis.")
 
 
 def menu():
