@@ -20,21 +20,21 @@ def single_proportion():
     else:
         print(f'''Success-failure condition not satisfied.''')
 
-    z_val = -1 * round(stats.norm.ppf(sig_level/2), 2)
-    se = round(sqrt(p_hat * (1-p_hat) / n), 2)
+    z_val = -1 * (stats.norm.ppf(sig_level/2))
+    se = sqrt(p_hat * (1-p_hat) / n)
 
-    upper_bound = round(p_hat + z_val * se, 4)
-    lower_bound = round(p_hat - z_val * se, 4)
+    upper_bound = p_hat + z_val * se
+    lower_bound = p_hat - z_val * se
 
     print(f'''Confidence interval with 
     p hat: {p_hat}
     n: {n}
-    significance level: {sig_level}
-    z value: {z_val}
-    standard error: {se}
+    significance level: {round(sig_level, 4)}
+    z value: {round(z_val, 4)}
+    standard error: {round(se, 4)}
 
-    upper bound: {upper_bound}
-    lower bound: {lower_bound}
+    upper bound: {round(upper_bound, 4)}
+    lower bound: {round(lower_bound, 4)}
     ''')
 
 
@@ -53,25 +53,25 @@ def two_proportion():
     else:
         print("Success-failure condition not satisfied.")
 
-    z_val = -1 * round(stats.norm.ppf(sig_level/2), 2)
-    se = round(sqrt((p1 * (1-p1) / n1) + (p2 * (1-p2) / n2)), 4)
+    z_val = -1 * (stats.norm.ppf(sig_level/2))
+    se = sqrt((p1 * (1-p1) / n1) + (p2 * (1-p2) / n2))
     diff = p1 - p2
 
-    upper_bound = round(diff + z_val * se, 4)
-    lower_bound = round(diff - z_val * se, 4)
+    upper_bound = diff + z_val * se
+    lower_bound = diff - z_val * se
 
     print(f'''Confidence interval with 
     p1: {p1}
     n1: {n1}
     p2: {p2}
     n2: {n2}
-    significance level: {sig_level}
-    z value: {z_val}
-    standard error: {se}
-    p1 - p2: {diff}
+    significance level: {round(sig_level, 4)}
+    z value: {round(z_val, 4)}
+    standard error: {round(se, 4)}
+    p1 - p2: {round(diff, 4)}
 
-    upper bound: {upper_bound}
-    lower bound: {lower_bound}
+    upper bound: {round(upper_bound, 4)}
+    lower bound: {round(lower_bound, 4)}
     ''')
 
 
