@@ -1,4 +1,4 @@
-from scipy import stats # to find z_val
+from scipy import stats
 from math import sqrt
 
 from time import sleep
@@ -45,6 +45,7 @@ def two_proportion():
     hello giogoel are youliostening ???
 
     ]'''
+    pass
 
 
 def margin_of_error():
