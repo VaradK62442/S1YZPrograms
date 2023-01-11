@@ -3,14 +3,14 @@ from math import sqrt
 
 from time import sleep
 
-def single_proportion():
+def single_mean():
     x_bar = float(input("Enter value for x bar: "))
     n = int(input("Enter value for n: "))
     sd = float(input("Enter value for standard deviation: "))
     sig_level = float(input("Enter value for significance level: ")) / 2
 
     df = n - 1
-    t_val = stats.t.ppf(sig_level, df)
+    t_val = stats.t.ppf(sig_level*2, df)
     se = sd / (sqrt(n))
 
     upper_bound = x_bar + t_val * se
@@ -28,7 +28,7 @@ def single_proportion():
     ''')
 
 
-def two_proportion():
+def two_means():
     '''
     pasta
     mamma mia !
@@ -53,15 +53,15 @@ def margin_of_error():
 
 
 def menu():
-    choice = int(input('''\n[1] Single proportion
-    \n[2] Two proportions
+    choice = int(input('''\n[1] Single mean
+    \n[2] Two means
     \n[3] Margin of error
     \nChoose type: '''))
 
     if choice == 1:
-        single_proportion()
+        single_mean()
     elif choice == 2:
-        two_proportion()
+        two_means()
     elif choice == 3:
         margin_of_error()
 

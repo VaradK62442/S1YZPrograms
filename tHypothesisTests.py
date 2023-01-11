@@ -2,7 +2,7 @@ from scipy import stats
 from math import sqrt
 
 
-def single_proportion():
+def single_mean():
     sig_level = float(input("Enter significance level: "))
     x_bar = float(input("Enter value for x bar: "))
     n = int(input("Enter sample size: "))
@@ -30,7 +30,7 @@ def single_proportion():
         print(f"Fail to reject null hypothesis.")
 
 
-def two_proportion():
+def two_mean():
     pass
 
 
@@ -38,9 +38,9 @@ def menu():
     print("Choose type of test:\n[1] Single proportion\n[2] Two proportions")
     choice = input()
     if choice == "1":
-        single_proportion()
+        single_mean()
     elif choice == "2":
-        two_proportion()
+        two_mean()
 
 
 def main():
