@@ -20,7 +20,7 @@ def single_mean():
 
     print(f"Degrees of Freedom: {df}")
     print(f"Standard error: {round(se, 4)}")
-    print(f"T score: {round(t_score, 4)}")
+    print(f"T score: {-1 * round(t_score, 4)}")
     print(f"p value: {round(p_val, 4)}")
 
     # decision
