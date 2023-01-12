@@ -97,17 +97,13 @@ def two_proportion():
         print(f"Fail to reject null hypothesis.")
 
 
-def menu():
+def main():
     print("Choose type of test:\n[1] Single proportion\n[2] Two proportions")
     choice = input()
     if choice == "1":
         single_proportion()
     elif choice == "2":
         two_proportion()
-
-
-def main():
-    menu()
 
 
 if __name__ == "__main__":

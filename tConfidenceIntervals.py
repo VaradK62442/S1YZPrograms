@@ -64,7 +64,7 @@ def margin_of_error():
     pass
 
 
-def menu():
+def main():
     choice = int(input('''\n[1] Single mean
     \n[2] Difference of two means
     \n[3] Margin of error
@@ -76,16 +76,6 @@ def menu():
         two_means()
     elif choice == 3:
         margin_of_error()
-
-
-def main():
-    menu()
-    # for i in range(500):
-    #     if i % 2 == 0:
-    #         print(":() ", end='\r')
-    #     else:
-    #         print(":( )", end='\r')
-    #     sleep(0.1)
 
 
 if __name__ == "__main__":

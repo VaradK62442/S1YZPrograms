@@ -66,17 +66,13 @@ def two_mean():
     
 
 
-def menu():
+def main():
     print("Choose type of test:\n[1] Single mean\n[2] Difference of two means")
     choice = input()
     if choice == "1":
         single_mean()
     elif choice == "2":
         two_mean()
-
-
-def main():
-    menu()
 
 
 if __name__ == "__main__":

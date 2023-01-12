@@ -79,7 +79,7 @@ def margin_of_error():
     pass
 
 
-def menu():
+def main():
     choice = int(input('''\n[1] Single proportion
     \n[2] Two proportions
     \n[3] Margin of error
@@ -91,10 +91,6 @@ def menu():
         two_proportion()
     elif choice == 3:
         margin_of_error()
-
-
-def main():
-    menu()
 
 
 if __name__ == "__main__":
