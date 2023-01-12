@@ -10,7 +10,7 @@ def single_mean():
     sig_level = float(input("Enter value for significance level: ")) / 2
 
     df = n - 1
-    t_val = stats.t.ppf(sig_level*2, df)
+    t_val = stats.t.ppf(sig_level, df)
     se = sd / (sqrt(n))
 
     upper_bound = x_bar + t_val * se
@@ -19,7 +19,7 @@ def single_mean():
     print(f'''Confidence interval with 
     x bar: {x_bar}
     n: {n}
-    significance level: {round(sig_level, 4)}
+    significance level: {100 * (1 - round(sig_level, 4) * 2)}%
     t value: {round(t_val, 4)}
     standard error: {round(se, 4)}
 
@@ -29,23 +29,35 @@ def single_mean():
 
 
 def two_means():
-    '''
-    pasta
-    mamma mia !
-    lasargne jonathon i rewute4 the lasalge john please i am garfielm i am fat car i want the lasane pleafd jonny ooooh meow 
-    if the  beep boop computor ooh - vawrad kulkarni 
+    x_bar1 = float(input("Enter value for x bar 1: "))
+    n1 = int(input("Enter value for n 1: "))
+    sd1 = float(input("Enter value for standard deviation 1: "))
 
-    hello computor it is me your powner varad ku8klkrao9i please work for meuou computor are you are stupoid   ? 
-    are so silly i am writing this so clearnt fot yopu i thought com0poutor was meant to be big intelligence but no yuou are sillly cpompitpor 
-    i bet you cant even coount to ten one two three four five six seven eight nine tgen there you are you nsiklly computor you are tgoing to count to ten iokay? yes okay good
-    go!
-    goodnewse sgracous me! wolw you arwe a smart computor arent you!!!!! so smsaertt youdescerve a computor snack! 
-    here ypou ngo sorry computo0prnvartaf dsyd ogs' i cant fgeed youn nay food :()
+    x_bar2 = float(input("Enter value for x bar 2: "))
+    n2 = int(input("Enter value for n 2: "))
+    sd2 = float(input("Enter value for standard deviation 2: "))
 
-    hello giogoel are youliostening ???
+    sig_level = float(input("Enter value for significance level: ")) / 2
 
-    ]'''
-    pass
+    df = min(n1-1, n2-1)
+    t_val = stats.t.ppf(sig_level, df)
+    se = sqrt((sd1**2 / n1) + (sd2**2 / n2))
+
+    x_bar = x_bar1 - x_bar2
+
+    upper_bound = x_bar + t_val * se
+    lower_bound = x_bar - t_val * se
+
+    print(f'''Confidence interval with 
+    x bar 1 - x bar 2: {x_bar}
+    significance level: {100 * (1 - round(sig_level, 4) * 2)}%
+    t value: {-1 * round(t_val, 4)}
+    standard error: {round(se, 4)}
+    df: {df}
+
+    upper bound: {round(upper_bound, 4)}
+    lower bound: {round(lower_bound, 4)}
+    ''')
 
 
 def margin_of_error():
@@ -54,7 +66,7 @@ def margin_of_error():
 
 def menu():
     choice = int(input('''\n[1] Single mean
-    \n[2] Two means
+    \n[2] Difference of two means
     \n[3] Margin of error
     \nChoose type: '''))
 
