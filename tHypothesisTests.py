@@ -16,7 +16,7 @@ def single_mean():
     if t_score > 0:
         t_score *= -1
 
-    rejection_region = stats.t.ppf(sig_level/2, df)
+    rejection_region = stats.t.ppf(sig_level/2, df) # two tailed in tables
     p_val = stats.t.cdf(t_score, df) * 2
 
     print(f"Degrees of Freedom: {df}")
