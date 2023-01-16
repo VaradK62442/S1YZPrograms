@@ -16,18 +16,24 @@ def single_mean():
     if t_score > 0:
         t_score *= -1
 
+    rejection_region = stats.t.ppf(sig_level/2, df)
     p_val = stats.t.cdf(t_score, df) * 2
 
     print(f"Degrees of Freedom: {df}")
     print(f"Standard error: {round(se, 4)}")
     print(f"T score: {-1 * round(t_score, 4)}")
+    print(f"Rejection region: {-1 * round(rejection_region, 2)}")
     print(f"p value: {round(p_val, 4)}")
 
     # decision
     if sig_level > p_val or sig_level < -1 * p_val:
         print(f"Reject null hypothesis.")
+        print(f"T score is inside the rejection region.")
+        print(f"p value is less than significance level.")
     else:
         print(f"Fail to reject null hypothesis.")
+        print(f"T score is not inside the rejection region.")
+        print(f"p value is more than significance level.")
 
 
 def two_mean():
