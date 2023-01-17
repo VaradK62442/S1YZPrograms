@@ -20,7 +20,7 @@ def single_mean():
     rejection_region = stats.t.ppf(sig_level/tailed, df) # n tailed in tables
     p_val = stats.t.cdf(t_score, df) * tailed
 
-    print(f'''Hypothesis test with:
+    print(f'''{tailed}-tail hypothesis test with:
     Degrees of Freedom: {df}
     Standard error: {round(se, 4)}
     T score: {-1 * round(t_score, 4)}
@@ -59,13 +59,16 @@ def two_mean():
     if t_score > 0:
         t_score *= -1
 
+    rejection_region = stats.t.ppf(sig_level/tailed, df) # n tailed in tables
     p_val = stats.t.cdf(t_score, df) * tailed
 
-    print(f"Difference in means: {x_bar}")
-    print(f"Degrees of Freedom: {df}")
-    print(f"Standard error: {round(se, 4)}")
-    print(f"T score: {-1 * round(t_score, 4)}")
-    print(f"p value: {round(p_val, 4)}")
+    print(f'''{tailed}-tail hypothesis test with:
+    Difference in means: {x_bar}
+    Degrees of Freedom: {df}
+    Standard error: {round(se, 4)}
+    T score: {-1 * round(t_score, 4)}
+    Rejection region: {-1 * round(rejection_region, 2)}
+    p value: {round(p_val, 4)}''')
 
     # decision
     if sig_level > p_val or sig_level < -1 * p_val:
