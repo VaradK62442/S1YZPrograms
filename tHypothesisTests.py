@@ -8,6 +8,7 @@ def single_mean():
     n = int(input("Enter sample size: "))
     sd = float(input("Enter standard deviation: "))
     mu = float(input("Enter hypothesis mean: "))
+    tailed = int(input("Enter if the test is [1] tailed or [2] tailed: "))
 
     df = n - 1
     se = sd / (sqrt(n))
@@ -16,8 +17,8 @@ def single_mean():
     if t_score > 0:
         t_score *= -1
 
-    rejection_region = stats.t.ppf(sig_level/2, df) # two tailed in tables
-    p_val = stats.t.cdf(t_score, df) * 2
+    rejection_region = stats.t.ppf(sig_level/tailed, df) # n tailed in tables
+    p_val = stats.t.cdf(t_score, df) * tailed
 
     print(f'''Hypothesis test with:
     Degrees of Freedom: {df}
@@ -48,6 +49,7 @@ def two_mean():
 
     sig_level = float(input("Enter significance level: "))
     mu = float(input("Enter hypothesis mean difference: "))
+    tailed = int(input("Enter if the test is [1] tailed or [2] tailed: "))
 
     x_bar = x_bar1 - x_bar2
     df = min(n1-1, n2-1)
@@ -57,7 +59,7 @@ def two_mean():
     if t_score > 0:
         t_score *= -1
 
-    p_val = stats.t.cdf(t_score, df) * 2
+    p_val = stats.t.cdf(t_score, df) * tailed
 
     print(f"Difference in means: {x_bar}")
     print(f"Degrees of Freedom: {df}")
@@ -68,8 +70,12 @@ def two_mean():
     # decision
     if sig_level > p_val or sig_level < -1 * p_val:
         print(f"Reject null hypothesis.")
+        print(f"T score is inside the rejection region.")
+        print(f"p value is less than significance level.")
     else:
         print(f"Fail to reject null hypothesis.")
+        print(f"T score is not inside the rejection region.")
+        print(f"p value is more than significance level.")
     
 
 
