@@ -7,10 +7,10 @@ def single_mean():
     x_bar = float(input("Enter value for x bar: "))
     n = int(input("Enter value for n: "))
     sd = float(input("Enter value for standard deviation: "))
-    sig_level = float(input("Enter value for significance level: ")) / 2
+    sig_level = float(input("Enter value for significance level: "))
 
     df = n - 1
-    t_val = stats.t.ppf(sig_level, df)
+    t_val = stats.t.ppf(sig_level/2, df) # two tailed in tables
     se = sd / (sqrt(n))
 
     upper_bound = x_bar + t_val * se
@@ -19,7 +19,7 @@ def single_mean():
     print(f'''Confidence interval with 
     x bar: {x_bar}
     n: {n}
-    significance level: {100 * (1 - round(sig_level, 4) * 2)}%
+    significance level: {100 * (1 - round(sig_level, 4))}%
     t value: {round(t_val, 4)}
     standard error: {round(se, 4)}
 
