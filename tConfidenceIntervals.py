@@ -1,8 +1,6 @@
 from scipy import stats
 from math import sqrt
 
-from time import sleep
-
 def single_mean():
     x_bar = float(input("Enter value for x bar: "))
     n = int(input("Enter value for n: "))
