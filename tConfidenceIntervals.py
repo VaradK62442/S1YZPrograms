@@ -8,15 +8,16 @@ def single_mean():
     n = int(input("Enter value for n: "))
     sd = float(input("Enter value for standard deviation: "))
     sig_level = float(input("Enter value for significance level: "))
+    tailed = int(input("Enter if the test is [1] tailed or [2] tailed: "))
 
     df = n - 1
-    t_val = stats.t.ppf(sig_level/2, df) # two tailed in tables
+    t_val = stats.t.ppf(sig_level/tailed, df) # n tailed in tables
     se = sd / (sqrt(n))
 
     upper_bound = x_bar + t_val * se
     lower_bound = x_bar - t_val * se
 
-    print(f'''Confidence interval with 
+    print(f'''{tailed}-tailed confidence interval with 
     x bar: {x_bar}
     n: {n}
     significance level: {100 * (1 - round(sig_level, 4))}%
@@ -37,10 +38,11 @@ def two_means():
     n2 = int(input("Enter value for n 2: "))
     sd2 = float(input("Enter value for standard deviation 2: "))
 
-    sig_level = float(input("Enter value for significance level: ")) / 2
+    sig_level = float(input("Enter value for significance level: "))
+    tailed = int(input("Enter if the test is [1] tailed or [2] tailed: "))
 
     df = min(n1-1, n2-1)
-    t_val = stats.t.ppf(sig_level, df)
+    t_val = stats.t.ppf(sig_level/tailed, df)
     se = sqrt((sd1**2 / n1) + (sd2**2 / n2))
 
     x_bar = x_bar1 - x_bar2
@@ -48,9 +50,9 @@ def two_means():
     upper_bound = x_bar + t_val * se
     lower_bound = x_bar - t_val * se
 
-    print(f'''Confidence interval with 
+    print(f'''{tailed}-tailed confidence interval with 
     x bar 1 - x bar 2: {x_bar}
-    significance level: {100 * (1 - round(sig_level, 4) * 2)}%
+    significance level: {100 * (1 - round(sig_level, 4))}%
     t value: {-1 * round(t_val, 4)}
     standard error: {round(se, 4)}
     df: {df}
