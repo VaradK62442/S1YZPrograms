@@ -1,2 +1,2 @@
 # S1YZPrograms
-Python programs for calculating basic statistics programs including hypothesis tests, confidence intervals, etc.
+Python programs for calculating basic statistics processes including hypothesis tests, confidence intervals, etc.
