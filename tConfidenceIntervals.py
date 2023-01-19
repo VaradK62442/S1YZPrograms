@@ -6,6 +6,7 @@ def single_mean():
     n = int(input("Enter value for n: "))
     sd = float(input("Enter value for standard deviation: "))
     sig_level = float(input("Enter value for significance level: "))
+    tailed = int(input("Enter if the test is [1] tailed or [2] tailed: "))
 
     df = n - 1
     t_val = stats.t.ppf(sig_level/tailed, df) # n tailed in tables
@@ -36,6 +37,7 @@ def two_means():
     sd2 = float(input("Enter value for standard deviation 2: "))
 
     sig_level = float(input("Enter value for significance level: "))
+    tailed = int(input("Enter if the test is [1] tailed or [2] tailed: "))
 
     df = min(n1-1, n2-1)
     t_val = stats.t.ppf(sig_level/tailed, df)
