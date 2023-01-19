@@ -38,7 +38,7 @@ def single_mean():
         print(f"p value is more than significance level.")
 
 
-def two_mean():
+def two_means_paired():
     x_bar1 = float(input("Enter value for x bar 1: "))
     n1 = int(input("Enter value for n 1: "))
     sd1 = float(input("Enter value for standard deviation 1: "))
@@ -79,16 +79,24 @@ def two_mean():
         print(f"Fail to reject null hypothesis.")
         print(f"T score is not inside the rejection region.")
         print(f"p value is more than significance level.")
-    
+
+
+def two_means_independent():
+    pass    
 
 
 def main():
-    print("Choose type of test:\n[1] Single mean\n[2] Difference of two means")
-    choice = input()
+    choice = int(input('''\n[1] Single mean
+    \n[2] Difference of two means (paired data)
+    \n[3] Difference of two means (independent data)
+    \nChoose type: '''))
+    
     if choice == "1":
         single_mean()
     elif choice == "2":
-        two_mean()
+        two_means_paired()
+    elif choice == "3":
+        two_means_independent()
 
 
 if __name__ == "__main__":
