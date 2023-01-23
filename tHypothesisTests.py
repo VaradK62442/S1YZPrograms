@@ -89,18 +89,36 @@ def two_means_independent():
     x_bar1 = float(input("Enter value for x bar 1: "))
     n1 = int(input("Enter value for n 1: "))
     sd1 = float(input("Enter value for standard deviation 1: "))
+    IQR1 = float(input("Enter IQR for sample 1: "))
 
     x_bar2 = float(input("Enter value for x bar 2: "))
     n2 = int(input("Enter value for n 2: "))
     sd2 = float(input("Enter value for standard deviation 2: "))
+    IQR2 = float(input("Enter IQR for sample 2: "))
 
     sig_level = float(input("Enter significance level: "))
     mu = float(input("Enter hypothesis mean difference: "))
     tailed = int(input("Enter if the test is [1] tailed or [2] tailed: "))
 
-    df = n1 + n2 - 2
-    s_2_pooled = ((n1-1) * sd1**2 + (n2-1) * sd2**2) / (n1 + n2 - 2)
-    t_score = ((x_bar1 - x_bar2) - mu) / sqrt(s_2_pooled*(1/n1 + 1/n2))   
+    # check IQR ratios
+    if max(IQR1, IQR2) / min(IQR1, IQR2) < 2:
+        print("Safe to assume equal variances.")
+        print("Ratio of IQRs is less than 2.")
+        equal_var = True
+    else:
+        print("Not safe to assume equal variances.")
+        print("Ratio of IQRs is not less than 2.")
+        equal_var = False
+
+    if not equal_var:
+        df = min(n1-1, n2-1)
+        se = sqrt(sd1**2/n1 + sd2**2/n2)
+    else:
+        df = n1 + n2 - 2
+        s_2_pooled = ((n1-1) * sd1**2 + (n2-1) * sd2**2) / (n1 + n2 - 2)
+        se = sqrt(s_2_pooled*(1/n1 + 1/n2))
+
+    t_score = ((x_bar1 - x_bar2) - mu) / se   
 
     if t_score > 0:
         t_score *= -1
