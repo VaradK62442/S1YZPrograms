@@ -36,7 +36,7 @@ def single_mean():
         print(f"p value is more than significance level.")
 
 
-def two_means_paired():
+def two_means():
     x_bar1 = float(input("Enter value for x bar 1: "))
     n1 = int(input("Enter value for n 1: "))
     sd1 = float(input("Enter value for standard deviation 1: "))
@@ -80,7 +80,7 @@ def two_means_paired():
         print(f"p value is more than significance level.")
 
 
-def two_means_independent():
+def two_means_pooled():
     # do not use unless clearly stated 
     # use pooled sd only after careful consideration    
     x_bar1 = float(input("Enter value for x bar 1: "))
@@ -144,16 +144,16 @@ def two_means_independent():
 
 def main():
     choice = int(input('''\n[1] Single mean
-    \n[2] Difference of two means (paired data)
-    \n[3] Difference of two means (independent data)
+    \n[2] Difference of two means
+    \n[3] Difference of two means (pooled data)
     \nChoose type: '''))
     
     if choice == 1:
         single_mean()
     elif choice == 2:
-        two_means_paired()
+        two_means()
     elif choice == 3:
-        two_means_independent()
+        two_means_pooled()
 
 
 if __name__ == "__main__":
