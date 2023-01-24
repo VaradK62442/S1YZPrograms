@@ -14,8 +14,8 @@ def get_list():
 
 
 def main():
-    l = [0, 100, 500, 600, 1000, 100000]
-    #l = sorted(get_list())
+    # l = [0, 100, 500, 600, 1000, 100000]
+    l = sorted(get_list())
     total = sum(l)
     n = len(l)
     mean = total / n
