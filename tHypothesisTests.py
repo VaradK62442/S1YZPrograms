@@ -54,18 +54,15 @@ def two_means():
     se = sqrt((sd1**2 / n1) + (sd2**2 / n2))
     t_score = (x_bar - mu)/se
 
-    if t_score > 0:
-        t_score *= -1
-
     rejection_region = stats.t.ppf(sig_level/tailed, df) # n tailed in tables
-    p_val = stats.t.cdf(t_score, df) * tailed
+    p_val = stats.t.cdf(-1 * t_score if t_score > 0 else t_score, df) * tailed
 
     print(f'''{tailed}-tail hypothesis test with:
     Difference in means: {x_bar}
     Degrees of Freedom: {df}
     Significance level: {sig_level/tailed}
     Standard error: {round(se, 4)}
-    T score: {-1 * round(t_score, 4)}
+    T score: {round(t_score, 4)}
     Rejection region: {-1 * round(rejection_region, 4)}
     p value: {round(p_val, 4)}''')
 
@@ -115,19 +112,16 @@ def two_means_pooled():
         s_2_pooled = ((n1-1) * sd1**2 + (n2-1) * sd2**2) / (n1 + n2 - 2)
         se = sqrt(s_2_pooled*(1/n1 + 1/n2))
 
-    t_score = ((x_bar1 - x_bar2) - mu) / se   
-
-    if t_score > 0:
-        t_score *= -1
+    t_score = ((x_bar1 - x_bar2) - mu) / se 
 
     rejection_region = stats.t.ppf(sig_level/tailed, df) # n tailed in tables
-    p_val = stats.t.cdf(t_score, df) * tailed
+    p_val = stats.t.cdf(-1 * t_score if t_score > 0 else t_score, df) * tailed
 
     print(f'''{tailed}-tail hypothesis test with:
     Degrees of Freedom: {df}
     Significance level: {sig_level/tailed}
     Standard error pooled: {round(s_2_pooled, 4)}
-    T score: {-1 * round(t_score, 4)}
+    T score: {round(t_score, 4)}
     Rejection region: {-1 * round(rejection_region, 4)}
     p value: {round(p_val, 4)}''')
 
