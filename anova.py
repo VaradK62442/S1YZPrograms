@@ -68,14 +68,14 @@ def anova():
         print("Fail to reject H0.")
         print(f"p value of {round(p, 4)} is more than significance level of {sig_level}")
 
-        print("If pairwise tests were carried out on these groups,")
-        K = k*(k-1)/2
-        a_star = sig_level / K
-        print(f'{K} pairwise comparisons would need to be made with a new significance level of {a_star}.')
-
     else:
         print("Reject H0.")
         print(f"p value of {round(p, 4)} is less than significance level of {sig_level}")
+
+        print("If pairwise tests were carried out on these groups,")
+        K = k*(k-1)/2
+        a_star = sig_level / K
+        print(f'{int(K)} pairwise comparisons would need to be made with a new significance level of {a_star}.')
 
 
 def main():
