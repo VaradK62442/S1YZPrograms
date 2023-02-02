@@ -1,5 +1,6 @@
 from scipy import stats
 from genTables import displayTable
+from math import sqrt
 
 
 def anova():
@@ -76,6 +77,7 @@ def anova():
         K = k*(k-1)/2
         a_star = sig_level / K
         print(f'{int(K)} pairwise comparisons would need to be made with a new significance level of {a_star}.')
+        print(f"The appropriate estimate for the standard deviation for each group is {round(sqrt(MSE), 4)}")
 
 
 def main():
