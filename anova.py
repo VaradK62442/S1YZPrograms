@@ -76,9 +76,12 @@ def anova():
         print("If pairwise tests were carried out on these groups,")
         K = k*(k-1)/2
         a_star = sig_level / K
-        print(f'{int(K)} pairwise comparisons would need to be made with a new significance level of {a_star}.')
-        print(f"The appropriate estimate for the standard deviation for each group is {round(sqrt(MSE), 4)}")
-
+        print(f'''
+        {int(K)} pairwise comparisons would be made with a new significance level of {round(a_star, 4)}.
+        The appropriate estimate for the standard deviation for each group is {round(sqrt(MSE), 4)}.
+        In tests, use MSE ({MSE}) as the variance, dfe ({dfe}) as the degrees of freedom and {round(a_star, 4)}.
+        ''')
+        
 
 def main():
     anova()
