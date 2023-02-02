@@ -3,6 +3,7 @@ from genTables import displayTable
 
 
 def anova():
+    sig_level = float(input("Enter significance level: "))
     k = int(input("Enter number of groups: "))
 
     # avgs and sizes
@@ -11,7 +12,7 @@ def anova():
 
     # total size and overall average
     n = sum(sizes)
-    x_bar = sum(avgs)/k
+    x_bar = sum([avgs[i] * sizes[i] for i in range(len(avgs))]) / sum(sizes)
 
     # degrees of freedom
     dfg = k - 1 # groups
@@ -19,11 +20,21 @@ def anova():
     dfe = dft - dfg # error
 
     # sum of squares
-    SSG = sum([(sizes[i] * (avgs[i] - x_bar)**2) for i in range(k)])
+    SSG = sum([sizes[i] * (avgs[i] - x_bar)**2 for i in range(k)])
+    print(f"Calculated SSG is {round(SSG, 4)}")
     # SST is too tedious to enter information by hand
-    print("SST (total sum of squares) is the sum from i=1 to n of (x_i - x_bar)^2")
-    SST = float(input("Enter SST for the sample: "))
-    SSE = SST - SSG
+    print("SST (total sum of squares) is the sum from i=1 to n of (x_i - x_bar)^2.")
+    print("It is also known as the total variability.")
+    SST = input("Enter SST for the sample (press enter if unknown): ")
+    SSE = input("Enter SSE for the sample (press enter if unknown): ")
+
+    if SST == '':
+        SSE = float(SSE)
+        SST = SSE + SSG
+
+    elif SSE == '':
+        SST = float(SST)
+        SSE = SST - SSG
 
     # mean squares
     MSG = SSG / dfg
@@ -52,6 +63,19 @@ def anova():
     ''')
     displayTable(table)
     print()
+
+    if p > sig_level:
+        print("Fail to reject H0.")
+        print(f"p value of {round(p, 4)} is more than significance level of {sig_level}")
+
+        print("If pairwise tests were carried out on these groups,")
+        K = k*(k-1)/2
+        a_star = sig_level / K
+        print(f'{K} pairwise comparisons would need to be made with a new significance level of {a_star}.')
+
+    else:
+        print("Reject H0.")
+        print(f"p value of {round(p, 4)} is less than significance level of {sig_level}")
 
 
 def main():
