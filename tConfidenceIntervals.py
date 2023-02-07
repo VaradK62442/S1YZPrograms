@@ -9,7 +9,7 @@ def single_mean():
     tailed = int(input("Enter if the test is [1] tailed or [2] tailed: "))
 
     df = n - 1
-    t_val = stats.t.ppf(sig_level/tailed, df) # n tailed in tables
+    t_val = abs(stats.t.ppf(sig_level/tailed, df)) # n tailed in tables
     se = sd / (sqrt(n))
 
     upper_bound = x_bar + t_val * se
