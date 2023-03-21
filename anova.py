@@ -84,12 +84,7 @@ import tkinter as tk
 #         ''')
 
 
-
-
-def display(root, sig_level, avgs, sizes, n, x_bar, k, dfg, dfe, dft, SSG, SSE, SST, MSG, MSE, F, p):
-    basic_info = ''
-    conclusion = ''
-    
+def display(root, sig_level, avgs, sizes, n, x_bar, k, dfg, dfe, dft, SSG, SSE, SST, MSG, MSE, F, p):    
     output_frame = tk.Frame(root)
     output_frame.pack()
 
@@ -242,7 +237,7 @@ def anova():
     k_in.grid(row=1, column=2, columnspan=2)
 
     next_but = tk.Button(input_frame, text="Next", width=20, command=get_sig_k)
-    next_but.grid(row=2, column=1, columnspan=2)
+    next_but.grid(row=2, column=1, columnspan=2)    
 
     root.mainloop()
 
