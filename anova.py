@@ -84,7 +84,7 @@ import tkinter as tk
 #         ''')
 
 
-def display(root, sig_level, avgs, sizes, n, x_bar, k, dfg, dfe, dft, SSG, SSE, SST, MSG, MSE, F, p):    
+def display(root, sig_level, avgs, sizes, n, x_bar, k, dfg, dfe, dft, SSG, SSE, SST, MSG, MSE, F, p):
     output_frame = tk.Frame(root)
     output_frame.pack()
 
@@ -94,7 +94,8 @@ def display(root, sig_level, avgs, sizes, n, x_bar, k, dfg, dfe, dft, SSG, SSE, 
     Overall average: {round(x_bar, 4)}
     
     Table of ANOVA results: '''
-    basic_label = tk.Label(output_frame, text=basic_info)
+
+    basic_label = tk.Label(output_frame, text='')
     basic_label.grid(row=k+9, column=0, columnspan=6)
 
     table = [
@@ -103,10 +104,14 @@ def display(root, sig_level, avgs, sizes, n, x_bar, k, dfg, dfe, dft, SSG, SSE, 
         ['Error', dfe, round(SSE, 4), round(MSE, 4), '', ''],
         ['Total', dft, round(SST, 4), '', '', '']
     ]
+
+    table_entries = []
+
     for r_i, row in enumerate(table):
         for c_i, elt in enumerate(row):
             entry = tk.Label(output_frame, text=str(elt))
             entry.grid(row=k+10+r_i, column=c_i)
+            table_entries.append(entry)
 
     conclusion = ''
     if p > sig_level:
@@ -122,10 +127,14 @@ def display(root, sig_level, avgs, sizes, n, x_bar, k, dfg, dfe, dft, SSG, SSE, 
         conclusion += f'''
         {int(K)} pairwise comparisons would be made with a new significance level of {round(a_star, 4)}.
         The appropriate estimate for the standard deviation for each group is {round(sqrt(MSE), 4)}.
-        In tests, use MSE ({MSE}) as the variance, dfe ({dfe}) as the degrees of freedom and {round(a_star, 4)}.
+        In tests, use MSE ({round(MSE, 4)}) as the variance, dfe ({dfe}) as the degrees of freedom and {round(a_star, 4)}.
         '''
+
     conclusion_label = tk.Label(output_frame, text=conclusion)
     conclusion_label.grid(row=k+15, column=0, columnspan=6)
+
+    clear_but = tk.Button(output_frame, text="Clear", width=20, command=output_frame.destroy)
+    clear_but.grid(row=k+16, column=0, columnspan=6)
 
 
 def anova():
@@ -201,8 +210,26 @@ def anova():
         sig_level = float(sig_level_in.get())
         k = int(k_in.get())
 
+        # try:
+        #     # destroy labels and entries if they already exist
+        #     for i in range(len(avgs_vals)):
+        #         avgs_vals[i].destroy()
+        #         avgs_labs[i].destroy()
+        #         sizes_vals[i].destroy()
+        #         sizes_labs[i].destroy()
+            
+        #     next_but.destroy()
+            
+        #     print("DESTORYING...")
+        # except Exception as e:
+        #     print("Couldn't destroy :(")
+        #     print(e)
+
         avgs_vals = []
+        avgs_labs = []
+
         sizes_vals = []
+        sizes_labs = []
 
         for i in range(k):
             avg_lab = tk.Label(input_frame, text=f"Mean for group {i+1}")
@@ -210,6 +237,7 @@ def anova():
             avg_lab.grid(row=i+3, column=0)
             avg_in.grid(row=i+3, column=1, padx=(0, 20))
 
+            avgs_labs.append(avg_lab)
             avgs_vals.append(avg_in)
 
             size_lab = tk.Label(input_frame, text=f"Size for group {i+1}")
@@ -217,6 +245,7 @@ def anova():
             size_lab.grid(row=i+3, column=2, sticky='e', padx=(20,0))
             size_in.grid(row=i+3, column=3)
 
+            sizes_labs.append(size_lab)
             sizes_vals.append(size_in)
 
         next_but = tk.Button(input_frame, text="Next", width=20, command=get_avgs_sizes)
