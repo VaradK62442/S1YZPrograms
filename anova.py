@@ -85,7 +85,7 @@ import tkinter as tk
 
 
 def display(root, sig_level, avgs, sizes, n, x_bar, k, dfg, dfe, dft, SSG, SSE, SST, MSG, MSE, F, p):
-    output_frame = tk.Frame(root)
+    output_frame = tk.Frame(root, relief=tk.GROOVE, borderwidth=3)
     output_frame.pack()
 
     basic_info = f'''Averages: {avgs}
@@ -95,7 +95,7 @@ def display(root, sig_level, avgs, sizes, n, x_bar, k, dfg, dfe, dft, SSG, SSE, 
     
     Table of ANOVA results: '''
 
-    basic_label = tk.Label(output_frame, text='')
+    basic_label = tk.Label(output_frame, text=basic_info)
     basic_label.grid(row=k+9, column=0, columnspan=6)
 
     table = [
@@ -140,7 +140,7 @@ def display(root, sig_level, avgs, sizes, n, x_bar, k, dfg, dfe, dft, SSG, SSE, 
 def anova():
     root = tk.Tk()
     root.title("ANOVA")
-    root.geometry("800x600")
+    root.geometry("800x750")
 
     def get_sig_k():
 
