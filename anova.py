@@ -242,7 +242,7 @@ def anova():
 
             size_lab = tk.Label(input_frame, text=f"Size for group {i+1}")
             size_in = tk.Entry(input_frame, text="", width=30)
-            size_lab.grid(row=i+3, column=2, sticky='e', padx=(20,0))
+            size_lab.grid(row=i+3, column=2, sticky='e', padx=(20, 0))
             size_in.grid(row=i+3, column=3)
 
             sizes_labs.append(size_lab)
