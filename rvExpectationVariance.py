@@ -108,9 +108,29 @@ def rv():
             prob_in.grid(row=i+3, column=3)
 
             probabilities.append(prob_in)
+            
+        # for i in range(outcome_count):
+        #     n_lab = tk.Label(input_frame, text=f"Entry {i+1}")
+        #     n_lab.grid(row=3, column=i+1)
+
+        # outcome_lab = tk.Label(input_frame, text="Outcomes")
+        # outcome_lab.grid(row=4, column=0)
+        # prob_lab = tk.Label(input_frame, text="Probabilities")
+        # prob_lab.grid(row=5, column=0)
+
+        # for i in range(outcome_count):
+        #     outcome_in = tk.Entry(input_frame, width=10)
+        #     outcome_in.grid(row=4, column=i+1, padx=(0, 20))
+
+        #     outcomes.append(outcome_in)
+
+        #     prob_in = tk.Entry(input_frame, width=10)
+        #     prob_in.grid(row=5, column=i+1, padx=(0, 20))
+
+        #     probabilities.append(prob_in)
 
         next_but = tk.Button(input_frame, text="Next", width=20, command=get_exp_var)
-        next_but.grid(row=outcome_count+4, column=0, columnspan=4)
+        next_but.grid(row=outcome_count+4, column=0, columnspan=outcome_count+1)
 
 
     input_frame = tk.Frame(root)
@@ -118,11 +138,11 @@ def rv():
 
     outcomes_lab = tk.Label(input_frame, text="Number of groups")
     outcomes_in = tk.Entry(input_frame, text="", width=30)
-    outcomes_lab.grid(row=1, column=0, sticky="e", columnspan=2)
-    outcomes_in.grid(row=1, column=2, columnspan=2)
+    outcomes_lab.grid(row=1, column=0, sticky="e")
+    outcomes_in.grid(row=1, column=1)
 
     next_but = tk.Button(input_frame, text="Next", width=20, command=get_outcomes)
-    next_but.grid(row=2, column=1, columnspan=2)    
+    next_but.grid(row=2, column=0, columnspan=2)    
 
     root.mainloop()
 
