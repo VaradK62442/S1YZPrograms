@@ -2,8 +2,10 @@ from scipy import stats
 
 
 def correlation():
+    x, y = [], []
+
     n = int(input("Enter number of observations: "))
-    for i in range(x):
+    for i in range(n):
         x.append(float(input(f"Enter predictor (x) {i+1}: ")))
         y.append(float(input(f"Enter response (y) {i+1}: ")))
 
