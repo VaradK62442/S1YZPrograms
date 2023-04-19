@@ -2,6 +2,7 @@ import tkinter as tk
 
 from anova import anova
 from rvExpectationVariance import rv
+from hypothesisTesting import hypothesis_test
 
 def main():
     root = tk.Tk()
@@ -19,7 +20,7 @@ def main():
     ci_but = tk.Button(root, text="Confidence Intervals", height=HEIGHT, width=WIDTH)
     ci_but.grid(row=0, column=2)
 
-    hypothesis_but = tk.Button(root, text="Hypothesis Testing", height=HEIGHT, width=WIDTH)
+    hypothesis_but = tk.Button(root, text="Hypothesis Testing", height=HEIGHT, width=WIDTH, command=hypothesis_test)
     hypothesis_but.grid(row=0, column=3)
 
     lin_reg_but = tk.Button(root, text="Linear Regression", height=HEIGHT, width=WIDTH)
