@@ -113,7 +113,7 @@ def hypothesis_test():
 
         def one_prop():
 
-            def perform_one_sided():
+            def perform_one_prop():
                 # clear previous outputs
                 for widgets in output_frame.winfo_children():
                     widgets.destroy() 
@@ -195,13 +195,13 @@ def hypothesis_test():
             sided_lab.grid(row=6, column=0, sticky="e")
             sided_val.grid(row=6, column=1)
 
-            next_but = tk.Button(input_frame, text="Next", width=20, command=perform_one_sided)
+            next_but = tk.Button(input_frame, text="Next", width=20, command=perform_one_prop)
             next_but.grid(row=7, column=0, columnspan=2) 
 
 
         def two_prop():
 
-            def perform_two_sided():
+            def perform_two_prop():
                 # clear previous outputs
                 for widgets in output_frame.winfo_children():
                     widgets.destroy() 
@@ -302,7 +302,7 @@ def hypothesis_test():
             sided_lab.grid(row=8, column=0, sticky="e")
             sided_val.grid(row=8, column=1)
 
-            next_but = tk.Button(input_frame, text="Next", width=20, command=perform_two_sided)
+            next_but = tk.Button(input_frame, text="Next", width=20, command=perform_two_prop)
             next_but.grid(row=9, column=0, columnspan=2)
 
         sided = prop_val.get()
@@ -315,7 +315,7 @@ def hypothesis_test():
 
     root = tk.Tk()
     root.title("Hypothesis testing")
-    root.geometry("800x750")
+    root.geometry("400x450")
 
     type_frame = tk.Frame(root)
     type_frame.pack()
