@@ -98,9 +98,9 @@ import tkinter as tk
 def confidence_interval():
 
     def prop_chosen():
-        print("prop chosen called")
+        
         def one_prop():
-            print("one prop called")
+            
             def perform_one_prop():
                 # clear previous outputs
                 for widgets in output_frame.winfo_children():
@@ -165,7 +165,7 @@ def confidence_interval():
 
         
         def two_prop():
-            print("two prop called")
+            
             def perform_two_prop():
                 # clear previous outputs
                 for widgets in output_frame.winfo_children():
@@ -250,13 +250,18 @@ def confidence_interval():
             next_but.grid(row=7, column=0, columnspan=2)
 
 
-        sided = prop_val.get()
-        print(f"got sided val: {sided}")
-        if sided == 1:
-            print("sided 1")
+        # sided = prop_val.get()
+        # print(f"got sided val: {sided}")
+        # if sided == 1:
+        #     print("sided 1")
+        #     one_prop()
+        # elif sided == 2:
+        #     print("sided 2")
+        #     two_prop()
+        
+        if int(test_type_val.get()) == 1:
             one_prop()
-        elif sided == 2:
-            print("sided 2")
+        elif int(test_type_val.get()) == 2:
             two_prop()
 
 
@@ -272,16 +277,15 @@ def confidence_interval():
 
     output_frame = tk.Frame(root, relief=tk.GROOVE, borderwidth=3)
     output_frame.pack()
+    
+    test_type_lab = tk.Label(type_frame, text="[1] or [2] proportion test")
+    test_type_val = tk.Entry(type_frame, width=30)
 
-    prop_val = tk.IntVar()
-    test_type_lab = tk.Label(type_frame, text="Type of test")
-    test_type_lab.grid(row=0, column=0, columnspan=2)
+    test_type_lab.grid(row=0, column=0)
+    test_type_val.grid(row=0, column=1)
 
-    one_prop = tk.Radiobutton(type_frame, text="One proportion", variable=prop_val, value=1, command=prop_chosen)
-    two_prop = tk.Radiobutton(type_frame, text="Two proportion", variable=prop_val, value=2, command=prop_chosen)
-
-    one_prop.grid(row=1, column=0)
-    two_prop.grid(row=1, column=1) 
+    next_but = tk.Button(type_frame, text="Next", width=20, command=prop_chosen)
+    next_but.grid(row=1, column=0, columnspan=2)
 
     root.mainloop()
 
