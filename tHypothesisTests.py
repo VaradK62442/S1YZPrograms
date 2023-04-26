@@ -1,5 +1,6 @@
 from scipy import stats
 from math import sqrt
+import tkinter as tk
 
 
 def single_mean():
