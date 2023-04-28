@@ -147,6 +147,10 @@ def anova():
         def get_avgs_sizes():
 
             def get_final_vals():
+                # clear previous outputs
+                for widget in output_frame.winfo_children():
+                    widget.destroy()
+
                 SST = SST_in.get()
                 SSE = SSE_in.get()
 
@@ -168,8 +172,61 @@ def anova():
                 # p value
                 p = 1 - stats.f.cdf(F, dfg, dfe)
 
-                display(root, sig_level, avgs, sizes, n, x_bar, k, dfg, dfe, dft, SSG, SSE, SST, MSG, MSE, F, p)
+                basic_info = f'''Averages: {avgs}
+                Sizes: {sizes}
+                Total size: {n}
+                Overall average: {round(x_bar, 4)}
+                
+                Table of ANOVA results: '''
 
+                basic_label = tk.Label(output_frame, text=basic_info)
+                basic_label.grid(row=k+9, column=0, columnspan=6)
+
+                table = [
+                    ['', 'df', 'sum sq', 'mean sq', 'F value', 'Pr(>F)'],
+                    ['Group', dfg, round(SSG, 4), round(MSG, 4), round(F, 4), round(p, 4)],
+                    ['Error', dfe, round(SSE, 4), round(MSE, 4), '', ''],
+                    ['Total', dft, round(SST, 4), '', '', '']
+                ]
+
+                table_entries = []
+
+                for r_i, row in enumerate(table):
+                    for c_i, elt in enumerate(row):
+                        entry = tk.Label(output_frame, text=str(elt))
+                        entry.grid(row=k+10+r_i, column=c_i)
+                        table_entries.append(entry)
+
+                conclusion = ''
+                if p > sig_level:
+                    conclusion += "Fail to reject H0.\n"
+                    conclusion += f"p value of {round(p, 4)} is more than significance level of {sig_level}."
+                else:
+                    conclusion += "Reject H0.\n"
+                    conclusion += f"p value of {round(p, 4)} is less than significance level of {sig_level}.\n"
+
+                    conclusion += "If pairwise tests were carried out on these groups,"
+                    K = k*(k-1)/2
+                    a_star = sig_level / K
+                    conclusion += f'''
+                    {int(K)} pairwise comparisons would be made with a new significance level of {round(a_star, 4)}.
+                    The appropriate estimate for the standard deviation for each group is {round(sqrt(MSE), 4)}.
+                    In tests, use MSE ({round(MSE, 4)}) as the variance, dfe ({dfe}) as the degrees of freedom and {round(a_star, 4)}.
+                    '''
+
+                conclusion_label = tk.Label(output_frame, text=conclusion)
+                conclusion_label.grid(row=k+15, column=0, columnspan=6)
+
+                clear_but = tk.Button(output_frame, text="Clear", width=20, command=output_frame.destroy)
+                clear_but.grid(row=k+16, column=0, columnspan=6)
+
+
+            # clear previous inputs
+            for widget in calc_frame.winfo_children():
+                widget.destroy()
+
+            for widget in output_frame.winfo_children():
+                widget.destroy()
 
             # averages and sizes
             avgs = [float(elt.get()) for elt in avgs_vals]
@@ -190,40 +247,35 @@ def anova():
             sum_sq_text = f'''Calculated SSG is {round(SSG, 4)}
             SST (total sum of squares is the sum from i=1 to n of (x_i - x_bar)^2).
             It is also known as the total variability.'''
-            sum_sq_info = tk.Label(input_frame, text=sum_sq_text)
+            sum_sq_info = tk.Label(calc_frame, text=sum_sq_text)
             sum_sq_info.grid(row=k+5, column=0, columnspan=4)
 
-            SST_lab = tk.Label(input_frame, text="SST for the sample (leave blank if unknown)")
-            SST_in = tk.Entry(input_frame, text="", width=30)
+            SST_lab = tk.Label(calc_frame, text="SST for the sample (leave blank if unknown)")
+            SST_in = tk.Entry(calc_frame, text="", width=30)
             SST_lab.grid(row=k+6, column=0, columnspan=2)
             SST_in.grid(row=k+6, column=2, columnspan=2)
 
-            SSE_lab = tk.Label(input_frame, text="SSE for the sample (leave blank if unknown)")
-            SSE_in = tk.Entry(input_frame, text="", width=30)
+            SSE_lab = tk.Label(calc_frame, text="SSE for the sample (leave blank if unknown)")
+            SSE_in = tk.Entry(calc_frame, text="", width=30)
             SSE_lab.grid(row=k+7, column=0, columnspan=2)
             SSE_in.grid(row=k+7, column=2, columnspan=2)
 
-            next_but = tk.Button(input_frame, text="Next", width=20, command=get_final_vals)
+            next_but = tk.Button(calc_frame, text="Next", width=20, command=get_final_vals)
             next_but.grid(row=k+8, column=0, columnspan=4)
 
 
+        # clear previous inputs
+        for widget in test_frame.winfo_children():
+            widget.destroy()
+
+        for widget in calc_frame.winfo_children():
+            widget.destroy()
+
+        for widget in output_frame.winfo_children():
+            widget.destroy()
+
         sig_level = float(sig_level_in.get())
         k = int(k_in.get())
-
-        # try:
-        #     # destroy labels and entries if they already exist
-        #     for i in range(len(avgs_vals)):
-        #         avgs_vals[i].destroy()
-        #         avgs_labs[i].destroy()
-        #         sizes_vals[i].destroy()
-        #         sizes_labs[i].destroy()
-            
-        #     next_but.destroy()
-            
-        #     print("DESTORYING...")
-        # except Exception as e:
-        #     print("Couldn't destroy :(")
-        #     print(e)
 
         avgs_vals = []
         avgs_labs = []
@@ -232,28 +284,37 @@ def anova():
         sizes_labs = []
 
         for i in range(k):
-            avg_lab = tk.Label(input_frame, text=f"Mean for group {i+1}")
-            avg_in = tk.Entry(input_frame, text="", width=30)
+            avg_lab = tk.Label(test_frame, text=f"Mean for group {i+1}")
+            avg_in = tk.Entry(test_frame, text="", width=30)
             avg_lab.grid(row=i+3, column=0)
             avg_in.grid(row=i+3, column=1, padx=(0, 20))
 
             avgs_labs.append(avg_lab)
             avgs_vals.append(avg_in)
 
-            size_lab = tk.Label(input_frame, text=f"Size for group {i+1}")
-            size_in = tk.Entry(input_frame, text="", width=30)
+            size_lab = tk.Label(test_frame, text=f"Size for group {i+1}")
+            size_in = tk.Entry(test_frame, text="", width=30)
             size_lab.grid(row=i+3, column=2, sticky='e', padx=(20, 0))
             size_in.grid(row=i+3, column=3)
 
             sizes_labs.append(size_lab)
             sizes_vals.append(size_in)
 
-        next_but = tk.Button(input_frame, text="Next", width=20, command=get_avgs_sizes)
+        next_but = tk.Button(test_frame, text="Next", width=20, command=get_avgs_sizes)
         next_but.grid(row=k+4, column=0, columnspan=4)
 
 
     input_frame = tk.Frame(root)
     input_frame.pack()
+
+    test_frame = tk.Frame(root)
+    test_frame.pack()
+
+    calc_frame = tk.Frame(root)
+    calc_frame.pack()
+
+    output_frame = tk.Frame(root, relief=tk.GROOVE, borderwidth=3)
+    output_frame.pack()
 
     sig_level_lab = tk.Label(input_frame, text="Significance level")
     sig_level_in = tk.Entry(input_frame, text="", width=30)
