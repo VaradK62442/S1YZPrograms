@@ -46,28 +46,15 @@ import tkinter as tk
 # print(f"Expected value: {exp}\nVariance value: {var}\nStandard deviation: {std}")
 
 
-def display(root, exp, var, out_c):
-    output_frame = tk.Frame(root, relief=tk.GROOVE, borderwidth=3)
-    output_frame.pack()
-
-    std = sqrt(var)
-
-    info = f'''Expected value: {round(exp, 4)}
-    Variance value: {round(var, 4)}
-    Standard deviation: {round(std, 4)}
-    '''
-    info_label = tk.Label(output_frame, text=info)
-    info_label.grid(row=out_c+5, column=0, columnspan=4)
-
-
 def rv():
-    root = tk.Tk()
-    root.title("Random variables")
-    root.geometry("800x750")
 
     def get_outcomes():
 
         def get_exp_var():
+            # clear previous inputs
+            for widgets in output_frame.winfo_children():
+                widgets.destroy() 
+
             outcome_vals = [int(elt.get()) for elt in outcomes]
             prob_vals = []
 
@@ -88,22 +75,37 @@ def rv():
             for i in range(len(outcome_vals)):
                 variance_val += (outcome_vals[i] - expected_val) ** 2 * prob_vals[i]
 
-            display(root, expected_val, variance_val, outcome_count)
+            # display(root, expected_val, variance_val, outcome_count)
 
+            std = sqrt(variance_val)
+
+            res = ''
+
+            res += f"Expected value: {round(expected_val, 4)}\n"
+            res += f"Variance value: {round(variance_val, 4)}\n"
+            res += f"Standard deviation: {round(std, 4)}"
+
+            info_label = tk.Label(output_frame, text=res)
+            info_label.grid(row=outcome_count+5, column=0, columnspan=4)
+
+
+        # clear previous inputs
+        for widgets in table_frame.winfo_children():
+            widgets.destroy() 
 
         outcome_count = int(outcomes_in.get())
         outcomes, probabilities = [], []
 
         for i in range(outcome_count):
-            outcome_lab = tk.Label(input_frame, text=f"Value of outcome {i+1}")
-            outcome_in = tk.Entry(input_frame, width=30)
+            outcome_lab = tk.Label(table_frame, text=f"Value of outcome {i+1}")
+            outcome_in = tk.Entry(table_frame, width=30)
             outcome_lab.grid(row=i+3, column=0)
             outcome_in.grid(row=i+3, column=1, padx=(0, 20))
 
             outcomes.append(outcome_in)
 
-            prob_lab = tk.Label(input_frame, text=f"Probability of outcome {i+1}")
-            prob_in = tk.Entry(input_frame, width=30)
+            prob_lab = tk.Label(table_frame, text=f"Probability of outcome {i+1}")
+            prob_in = tk.Entry(table_frame, width=30)
             prob_lab.grid(row=i+3, column=2, sticky='e', padx=(20, 0))
             prob_in.grid(row=i+3, column=3)
 
@@ -129,15 +131,26 @@ def rv():
 
         #     probabilities.append(prob_in)
 
-        next_but = tk.Button(input_frame, text="Next", width=20, command=get_exp_var)
-        next_but.grid(row=outcome_count+4, column=0, columnspan=outcome_count+1)
+        next_but = tk.Button(table_frame, text="Next", width=20, command=get_exp_var)
+        next_but.grid(row=outcome_count+4, column=0, columnspan=4)
 
+    
+    root = tk.Tk()
+    root.title("Random variables")
+    root.geometry("700x350")
 
     input_frame = tk.Frame(root)
     input_frame.pack()
 
+    table_frame = tk.Frame(root)
+    table_frame.pack()
+
+    output_frame = tk.Frame(root, relief=tk.GROOVE, borderwidth=3)
+    output_frame.pack()
+
     outcomes_lab = tk.Label(input_frame, text="Number of groups")
     outcomes_in = tk.Entry(input_frame, text="", width=30)
+
     outcomes_lab.grid(row=1, column=0, sticky="e")
     outcomes_in.grid(row=1, column=1)
 
