@@ -5,6 +5,7 @@ from rvExpectationVariance import rv
 from hypothesisTesting import hypothesis_test
 from confidenceIntervals import confidence_interval
 from tConfidenceIntervals import t_confidence_interval
+from tHypothesisTests import t_hypothesis_test
 
 
 def main():
@@ -32,10 +33,10 @@ def main():
     rv_but = tk.Button(root, text="Random Variables", height=HEIGHT, width=WIDTH, command=rv)
     rv_but.grid(row=1, column=1)
 
-    t_ci_but = tk.Button(root, text="T test Confidence Intervals", height=HEIGHT, width=WIDTH, command=t_confidence_interval)
+    t_ci_but = tk.Button(root, text="T Confidence Intervals", height=HEIGHT, width=WIDTH, command=t_confidence_interval)
     t_ci_but.grid(row=1, column=2)
 
-    t_hypothesis_but = tk.Button(root, text="T test Hypothesis Testing", height=HEIGHT, width=WIDTH)
+    t_hypothesis_but = tk.Button(root, text="T Hypothesis Testing", height=HEIGHT, width=WIDTH, command=t_hypothesis_test)
     t_hypothesis_but.grid(row=1, column=3)
 
     root.mainloop()

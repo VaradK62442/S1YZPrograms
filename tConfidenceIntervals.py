@@ -139,6 +139,7 @@ def t_confidence_interval():
 
             sig_level = float(sig_level_val.get())
             x_bar = float(x_bar_val.get())
+            
             n = int(n_val.get())
             sd = float(sd_val.get())
             tailed = int(tailed_val.get())
@@ -212,12 +213,16 @@ def t_confidence_interval():
                 widgets.destroy()
 
             sig_level = float(sig_level_val.get())
+            
             x_bar1 = float(x1_val.get())
             x_bar2 = float(x2_val.get())
+            
             n1 = int(n1_val.get())
             n2 = int(n2_val.get())
+            
             sd1 = float(sd1_val.get())
             sd2 = float(sd2_val.get())
+            
             tailed = int(tailed_val.get())                
 
             res = ''
@@ -309,14 +314,19 @@ def t_confidence_interval():
                 widgets.destroy()
 
             sig_level = float(sig_level_val.get())
+            
             x_bar1 = float(x1_val.get())
             x_bar2 = float(x2_val.get())
+            
             n1 = int(n1_val.get())
             n2 = int(n2_val.get())
+            
             sd1 = float(sd1_val.get())
             sd2 = float(sd2_val.get())
+            
             IQR1 = float(IQR1_val.get())
             IQR2 = float(IQR2_val.get())
+            
             tailed = int(tailed_val.get())                
 
             res = ''
@@ -427,7 +437,7 @@ def t_confidence_interval():
 
 
     root = tk.Tk()
-    root.title("Confidence Intervals")
+    root.title("T Confidence Intervals")
     root.geometry("500x450")
 
     type_frame = tk.Frame(root)
