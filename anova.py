@@ -209,7 +209,7 @@ def anova():
 
                     conclusion += f"{int(K)} pairwise comparisons would be made with a new significance level of {round(a_star, 4)}.\n"
                     conclusion += f"The appropriate estimate for the standard deviation for each group is {round(sqrt(MSE), 4)}.\n"
-                    conclusion += f"In tests, use MSE ({round(MSE, 4)}) as the variance, dfe ({dfe}) as the degrees of freedom and {round(a_star, 4)}."
+                    conclusion += f"In tests, use MSE ({round(MSE, 4)}) as the variance and dfe ({dfe}) as the degrees of freedom."
 
                 conclusion_label = tk.Label(output_frame, text=conclusion)
                 conclusion_label.grid(row=k+15, column=0, columnspan=6)
