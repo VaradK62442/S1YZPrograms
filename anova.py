@@ -138,9 +138,6 @@ def display(root, sig_level, avgs, sizes, n, x_bar, k, dfg, dfe, dft, SSG, SSE, 
 
 
 def anova():
-    root = tk.Tk()
-    root.title("ANOVA")
-    root.geometry("800x750")
 
     def get_sig_k():
 
@@ -172,12 +169,13 @@ def anova():
                 # p value
                 p = 1 - stats.f.cdf(F, dfg, dfe)
 
-                basic_info = f'''Averages: {avgs}
-                Sizes: {sizes}
-                Total size: {n}
-                Overall average: {round(x_bar, 4)}
-                
-                Table of ANOVA results: '''
+                basic_info = ''
+                basic_info += f"Averages: {avgs}\n"
+                basic_info += f"Sizes: {sizes}\n"
+                basic_info += f"Total size: {n}\n"
+                basic_info += f"Overall average: {round(x_bar, 4)}\n"
+                basic_info += f"\n"
+                basic_info += f"Table of ANOVA results:"
 
                 basic_label = tk.Label(output_frame, text=basic_info)
                 basic_label.grid(row=k+9, column=0, columnspan=6)
@@ -199,26 +197,22 @@ def anova():
 
                 conclusion = ''
                 if p > sig_level:
-                    conclusion += "Fail to reject H0.\n"
-                    conclusion += f"p value of {round(p, 4)} is more than significance level of {sig_level}."
+                    conclusion += "\nFail to reject H0.\n"
+                    conclusion += f"p value of {round(p, 4)} is more than significance level of {sig_level}.\n"
                 else:
-                    conclusion += "Reject H0.\n"
+                    conclusion += "\nReject H0.\n"
                     conclusion += f"p value of {round(p, 4)} is less than significance level of {sig_level}.\n"
 
-                    conclusion += "If pairwise tests were carried out on these groups,"
+                    conclusion += "If pairwise tests were carried out on these groups,\n"
                     K = k*(k-1)/2
                     a_star = sig_level / K
-                    conclusion += f'''
-                    {int(K)} pairwise comparisons would be made with a new significance level of {round(a_star, 4)}.
-                    The appropriate estimate for the standard deviation for each group is {round(sqrt(MSE), 4)}.
-                    In tests, use MSE ({round(MSE, 4)}) as the variance, dfe ({dfe}) as the degrees of freedom and {round(a_star, 4)}.
-                    '''
+
+                    conclusion += f"{int(K)} pairwise comparisons would be made with a new significance level of {round(a_star, 4)}.\n"
+                    conclusion += f"The appropriate estimate for the standard deviation for each group is {round(sqrt(MSE), 4)}.\n"
+                    conclusion += f"In tests, use MSE ({round(MSE, 4)}) as the variance, dfe ({dfe}) as the degrees of freedom and {round(a_star, 4)}."
 
                 conclusion_label = tk.Label(output_frame, text=conclusion)
                 conclusion_label.grid(row=k+15, column=0, columnspan=6)
-
-                clear_but = tk.Button(output_frame, text="Clear", width=20, command=output_frame.destroy)
-                clear_but.grid(row=k+16, column=0, columnspan=6)
 
 
             # clear previous inputs
@@ -244,9 +238,11 @@ def anova():
             # sum of squares
             SSG = sum([sizes[i] * (avgs[i] - x_bar)**2 for i in range(k)])  
 
-            sum_sq_text = f'''Calculated SSG is {round(SSG, 4)}
-            SST (total sum of squares is the sum from i=1 to n of (x_i - x_bar)^2).
-            It is also known as the total variability.'''
+            sum_sq_text = ''
+            sum_sq_text += f"Calculated SSG is {round(SSG, 4)}\n"
+            sum_sq_text += f"SST (total sum of squares is the sum from i=1 to n of (x_i - x_bar)^2).\n"
+            sum_sq_text += f"It is also known as the total variability.\n"
+
             sum_sq_info = tk.Label(calc_frame, text=sum_sq_text)
             sum_sq_info.grid(row=k+5, column=0, columnspan=4)
 
@@ -303,6 +299,10 @@ def anova():
         next_but = tk.Button(test_frame, text="Next", width=20, command=get_avgs_sizes)
         next_but.grid(row=k+4, column=0, columnspan=4)
 
+    
+    root = tk.Tk()
+    root.title("ANOVA")
+    root.geometry("800x750")
 
     input_frame = tk.Frame(root)
     input_frame.pack()
