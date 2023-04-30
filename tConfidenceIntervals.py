@@ -161,7 +161,8 @@ def t_confidence_interval():
             res += f"Standard error: {round(se, 4)}\n"
             res += "\n"
             res += f"Full equation: {round(x_bar, 4)} ± {round(t_val, 4)} * {round(se, 4)}\n"
-            res += f"Confidence interval: ({round(lower_bound, 4)}, {round(upper_bound, 4)})"
+            res += f"Confidence interval: ({round(lower_bound, 4)}, {round(upper_bound, 4)})\n"
+            res += f"We are {100 * (1 - round(sig_level, 4))}% confident that the population average lies between {round(lower_bound, 4)} and {round(upper_bound, 4)}."
 
             conclusion_label = tk.Label(output_frame, text=res)
             conclusion_label.grid(row=7, column=0, columnspan=2)
@@ -244,7 +245,8 @@ def t_confidence_interval():
             res += f"Degrees of freedom: {df}\n"
             res += "\n"
             res += f"Full equation: {round(x_bar, 4)} ± {round(t_val, 4)} * {round(se, 4)}\n"
-            res += f"Confidence interval: ({round(lower_bound, 4)}, {round(upper_bound, 4)})"
+            res += f"Confidence interval: ({round(lower_bound, 4)}, {round(upper_bound, 4)})\n"
+            res += f"We are {100 * (1 - round(sig_level, 4))}% confident that the population average lies between {round(lower_bound, 4)} and {round(upper_bound, 4)}."
 
             conclusion_label = tk.Label(output_frame, text=res)
             conclusion_label.grid(row=10, column=0, columnspan=2)
@@ -363,7 +365,8 @@ def t_confidence_interval():
             res += f"Degrees of freedom: {df}\n"
             res += "\n"
             res += f"Full equation: {round(x_bar, 4)} ± {round(t_val, 4)} * {round(se, 4)}\n"
-            res += f"Confidence interval: ({round(lower_bound, 4)}, {round(upper_bound, 4)})"
+            res += f"Confidence interval: ({round(lower_bound, 4)}, {round(upper_bound, 4)})\n"
+            res += f"We are {100 * (1 - round(sig_level, 4))}% confident that the population average lies between {round(lower_bound, 4)} and {round(upper_bound, 4)}."
 
             conclusion_label = tk.Label(output_frame, text=res)
             conclusion_label.grid(row=10, column=0, columnspan=2)
