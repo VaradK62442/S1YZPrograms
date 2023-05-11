@@ -414,7 +414,7 @@ def t_hypothesis_test():
             res += f"{tailed}-tail hypothesis test with:\n"
             res += f"Degrees of freedom: {df}\n"
             res += f"Significance level: {sig_level/tailed}\n"
-            res += f"Standard error pooled: {round(s_2_pooled, 4)}\n"
+            res += f"Standard error pooled: {round(se, 4)}\n"
             res += f"T score: {round(t_score, 4)}\n"
             res += f"Rejection region: {-1 * round(rejection_region, 4)}\n"
             res += f"p value: {round(p_val, 4)}\n"
